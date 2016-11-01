@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "JJRevealViewController.h"
+#import "JJLeftViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    JJLeftViewController *leftVC = [[JJLeftViewController alloc] init];
+    JJRevealViewController *revealVC = [[JJRevealViewController alloc] initWithLeftViewController:leftVC];
+    revealVC.leftViewWidth = 230;
+    self.window.rootViewController = revealVC;    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

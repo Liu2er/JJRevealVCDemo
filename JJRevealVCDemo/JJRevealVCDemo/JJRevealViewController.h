@@ -10,4 +10,8 @@
 
 @interface JJRevealViewController : UIViewController
 
+@property (nonatomic) CGFloat leftViewWidth;
+
+- (instancetype)initWithLeftViewController:(UIViewController *)leftViewController;
+
 @end
