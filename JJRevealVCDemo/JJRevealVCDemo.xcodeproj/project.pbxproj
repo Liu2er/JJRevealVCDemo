@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		58BF34C81DC8A9C500E0DAC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34C71DC8A9C500E0DAC5 /* main.m */; };
 		58BF34CB1DC8A9C500E0DAC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34CA1DC8A9C500E0DAC5 /* AppDelegate.m */; };
-		58BF34CE1DC8A9C500E0DAC5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34CD1DC8A9C500E0DAC5 /* ViewController.m */; };
 		58BF34D11DC8A9C500E0DAC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58BF34CF1DC8A9C500E0DAC5 /* Main.storyboard */; };
 		58BF34D31DC8A9C500E0DAC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58BF34D21DC8A9C500E0DAC5 /* Assets.xcassets */; };
 		58BF34D61DC8A9C500E0DAC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58BF34D41DC8A9C500E0DAC5 /* LaunchScreen.storyboard */; };
 		58BF34E11DC8A9C500E0DAC5 /* JJRevealVCDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34E01DC8A9C500E0DAC5 /* JJRevealVCDemoTests.m */; };
 		58BF34EC1DC8A9C500E0DAC5 /* JJRevealVCDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34EB1DC8A9C500E0DAC5 /* JJRevealVCDemoUITests.m */; };
+		58BF34FB1DC8AA2C00E0DAC5 /* JJRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34FA1DC8AA2C00E0DAC5 /* JJRevealViewController.m */; };
+		58BF34FE1DC8AA3F00E0DAC5 /* JJLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34FD1DC8AA3F00E0DAC5 /* JJLeftViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +40,6 @@
 		58BF34C71DC8A9C500E0DAC5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58BF34C91DC8A9C500E0DAC5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		58BF34CA1DC8A9C500E0DAC5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		58BF34CC1DC8A9C500E0DAC5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		58BF34CD1DC8A9C500E0DAC5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		58BF34D01DC8A9C500E0DAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		58BF34D21DC8A9C500E0DAC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58BF34D51DC8A9C500E0DAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +50,10 @@
 		58BF34E71DC8A9C500E0DAC5 /* JJRevealVCDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JJRevealVCDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58BF34EB1DC8A9C500E0DAC5 /* JJRevealVCDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJRevealVCDemoUITests.m; sourceTree = "<group>"; };
 		58BF34ED1DC8A9C500E0DAC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58BF34F91DC8AA2C00E0DAC5 /* JJRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRevealViewController.h; sourceTree = "<group>"; };
+		58BF34FA1DC8AA2C00E0DAC5 /* JJRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRevealViewController.m; sourceTree = "<group>"; };
+		58BF34FC1DC8AA3F00E0DAC5 /* JJLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJLeftViewController.h; sourceTree = "<group>"; };
+		58BF34FD1DC8AA3F00E0DAC5 /* JJLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJLeftViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +106,10 @@
 			children = (
 				58BF34C91DC8A9C500E0DAC5 /* AppDelegate.h */,
 				58BF34CA1DC8A9C500E0DAC5 /* AppDelegate.m */,
-				58BF34CC1DC8A9C500E0DAC5 /* ViewController.h */,
-				58BF34CD1DC8A9C500E0DAC5 /* ViewController.m */,
-				58BF34CF1DC8A9C500E0DAC5 /* Main.storyboard */,
-				58BF34D21DC8A9C500E0DAC5 /* Assets.xcassets */,
-				58BF34D41DC8A9C500E0DAC5 /* LaunchScreen.storyboard */,
-				58BF34D71DC8A9C500E0DAC5 /* Info.plist */,
+				58BF34F91DC8AA2C00E0DAC5 /* JJRevealViewController.h */,
+				58BF34FA1DC8AA2C00E0DAC5 /* JJRevealViewController.m */,
+				58BF34FC1DC8AA3F00E0DAC5 /* JJLeftViewController.h */,
+				58BF34FD1DC8AA3F00E0DAC5 /* JJLeftViewController.m */,
 				58BF34C61DC8A9C500E0DAC5 /* Supporting Files */,
 			);
 			path = JJRevealVCDemo;
@@ -117,6 +118,10 @@
 		58BF34C61DC8A9C500E0DAC5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				58BF34CF1DC8A9C500E0DAC5 /* Main.storyboard */,
+				58BF34D21DC8A9C500E0DAC5 /* Assets.xcassets */,
+				58BF34D41DC8A9C500E0DAC5 /* LaunchScreen.storyboard */,
+				58BF34D71DC8A9C500E0DAC5 /* Info.plist */,
 				58BF34C71DC8A9C500E0DAC5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -276,9 +281,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58BF34CE1DC8A9C500E0DAC5 /* ViewController.m in Sources */,
 				58BF34CB1DC8A9C500E0DAC5 /* AppDelegate.m in Sources */,
+				58BF34FB1DC8AA2C00E0DAC5 /* JJRevealViewController.m in Sources */,
 				58BF34C81DC8A9C500E0DAC5 /* main.m in Sources */,
+				58BF34FE1DC8AA3F00E0DAC5 /* JJLeftViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

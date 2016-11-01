@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  JJLeftViewController.h
 //  JJRevealVCDemo
 //
 //  Created by 刘佳杰 on 16/11/1.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface JJLeftViewController : UIViewController
 
 @end
-
