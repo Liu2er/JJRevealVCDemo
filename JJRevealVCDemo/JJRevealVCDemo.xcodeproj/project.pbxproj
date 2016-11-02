@@ -16,6 +16,7 @@
 		58BF34EC1DC8A9C500E0DAC5 /* JJRevealVCDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34EB1DC8A9C500E0DAC5 /* JJRevealVCDemoUITests.m */; };
 		58BF34FB1DC8AA2C00E0DAC5 /* JJRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34FA1DC8AA2C00E0DAC5 /* JJRevealViewController.m */; };
 		58BF34FE1DC8AA3F00E0DAC5 /* JJLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF34FD1DC8AA3F00E0DAC5 /* JJLeftViewController.m */; };
+		58DB910C1DC9C7AB00B8D8C8 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DB910B1DC9C7AB00B8D8C8 /* UIView+Layout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		58BF34FA1DC8AA2C00E0DAC5 /* JJRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRevealViewController.m; sourceTree = "<group>"; };
 		58BF34FC1DC8AA3F00E0DAC5 /* JJLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJLeftViewController.h; sourceTree = "<group>"; };
 		58BF34FD1DC8AA3F00E0DAC5 /* JJLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJLeftViewController.m; sourceTree = "<group>"; };
+		58DB910A1DC9C7AB00B8D8C8 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		58DB910B1DC9C7AB00B8D8C8 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				58BF34FA1DC8AA2C00E0DAC5 /* JJRevealViewController.m */,
 				58BF34FC1DC8AA3F00E0DAC5 /* JJLeftViewController.h */,
 				58BF34FD1DC8AA3F00E0DAC5 /* JJLeftViewController.m */,
+				58DB910A1DC9C7AB00B8D8C8 /* UIView+Layout.h */,
+				58DB910B1DC9C7AB00B8D8C8 /* UIView+Layout.m */,
 				58BF34C61DC8A9C500E0DAC5 /* Supporting Files */,
 			);
 			path = JJRevealVCDemo;
@@ -284,6 +289,7 @@
 				58BF34CB1DC8A9C500E0DAC5 /* AppDelegate.m in Sources */,
 				58BF34FB1DC8AA2C00E0DAC5 /* JJRevealViewController.m in Sources */,
 				58BF34C81DC8A9C500E0DAC5 /* main.m in Sources */,
+				58DB910C1DC9C7AB00B8D8C8 /* UIView+Layout.m in Sources */,
 				58BF34FE1DC8AA3F00E0DAC5 /* JJLeftViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,7 +440,7 @@
 				DEVELOPMENT_TEAM = DJYQ9E2R5Z;
 				INFOPLIST_FILE = JJRevealVCDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = self.edu.JJRevealVCDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianping.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -446,7 +452,7 @@
 				DEVELOPMENT_TEAM = DJYQ9E2R5Z;
 				INFOPLIST_FILE = JJRevealVCDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = self.edu.JJRevealVCDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianping.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -520,6 +526,7 @@
 				58BF34F21DC8A9C500E0DAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58BF34F31DC8A9C500E0DAC5 /* Build configuration list for PBXNativeTarget "JJRevealVCDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +535,7 @@
 				58BF34F51DC8A9C500E0DAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58BF34F61DC8A9C500E0DAC5 /* Build configuration list for PBXNativeTarget "JJRevealVCDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +544,7 @@
 				58BF34F81DC8A9C500E0DAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

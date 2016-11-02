@@ -21,7 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     JJLeftViewController *leftVC = [[JJLeftViewController alloc] init];
     JJRevealViewController *revealVC = [[JJRevealViewController alloc] initWithLeftViewController:leftVC];
-    revealVC.leftViewWidth = 230;
+    revealVC.leftViewWidth = 300;
     self.window.rootViewController = revealVC;    
     [self.window makeKeyAndVisible];
     return YES;
