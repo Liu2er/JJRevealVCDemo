@@ -22,6 +22,7 @@
     JJLeftViewController *leftVC = [[JJLeftViewController alloc] init];
     JJRevealViewController *revealVC = [[JJRevealViewController alloc] initWithLeftViewController:leftVC];
     revealVC.leftViewWidth = 300;
+    leftVC.tableViewWidth = revealVC.leftViewWidth;
     self.window.rootViewController = revealVC;    
     [self.window makeKeyAndVisible];
     return YES;
