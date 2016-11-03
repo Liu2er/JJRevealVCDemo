@@ -201,18 +201,18 @@ static const float footerHeight = 150;
         }];
     }
     
-    // frontView变小，即打开左侧菜单
-    if (self.isRevealViewOpen && recognizer.state == UIGestureRecognizerStateEnded) {
-        [UIView animateWithDuration:0.2 animations:^{
-            // 用recognizer.view.left = 0;的方式会因为锚点原因导致往左偏
-            recognizer.view.centerX = self.tableViewWidth + SCREEN_WIDTH * self.frontViewTransformScale / 2.0;
-            recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.frontViewTransformScale, self.frontViewTransformScale);
-            self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-            self.tableView.right = recognizer.view.left;
-        } completion:^(BOOL finished) {
-            self.isRevealViewOpen = NO;
-        }];
-    }
+//    // frontView变小，即打开左侧菜单
+//    if (self.isRevealViewOpen && recognizer.state == UIGestureRecognizerStateEnded) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            // 用recognizer.view.left = 0;的方式会因为锚点原因导致往左偏
+//            recognizer.view.centerX = self.tableViewWidth + SCREEN_WIDTH * self.frontViewTransformScale / 2.0;
+//            recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.frontViewTransformScale, self.frontViewTransformScale);
+//            self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+//            self.tableView.right = recognizer.view.left;
+//        } completion:^(BOOL finished) {
+//            self.isRevealViewOpen = NO;
+//        }];
+//    }
 }
 
 #pragma  maek - UITableViewDelegate UITableViewDataSource
