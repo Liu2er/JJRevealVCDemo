@@ -18,7 +18,7 @@ static const float footerHeight = 150;
 
 @interface JJRevealViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) UIViewController *frontViewController;
+@property (strong, nonatomic) UIView *frontView;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
@@ -33,6 +33,8 @@ static const float footerHeight = 150;
 @property (strong, nonatomic) NSMutableArray <UIViewController *> *viewControllers;
 
 @property (strong, nonatomic) NSMutableDictionary *dataSource;
+
+@property (assign, nonatomic) BOOL isFirstFrontView;
 
 @end
 
@@ -70,12 +72,26 @@ static const float footerHeight = 150;
     return _dataSource;
 }
 
+- (UIView *)frontView {
+    if (!_frontView) {
+        _frontView = [[UIView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_frontView];
+    }
+    return _frontView;
+}
+
 - (void)addFrontViewController:(UIViewController *)frontViewController withTitle:(NSString *)title {
     
     // 把第一次添加的frontViewController设为默认的self.frontViewController
-    if (!self.frontViewController) {
-        self.frontViewController = frontViewController;
-    }
+//    if (self.isFirstFrontView) {
+//        [self.frontView addSubview:frontViewController.view];
+//        self.isFirstFrontView = NO;
+//    }
+    
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self.frontView addSubview:frontViewController.view];
+//    });
     
     NSLog(@"frontViewController = %@", frontViewController);
     
@@ -112,6 +128,7 @@ static const float footerHeight = 150;
     self.frontViewTransformScale = 0.8;
     self.tableViewTransformScale = 0.8;
     self.isRevealViewOpen = YES;
+    self.isFirstFrontView = YES;
     
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageview.image = [UIImage imageNamed:@"leftbackiamge"];
@@ -125,14 +142,24 @@ static const float footerHeight = 150;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
-    self.frontViewController.view.layer.shadowColor =[UIColor blackColor].CGColor;
-    self.frontViewController.view.layer.shadowOpacity = 1.0f;
-    self.frontViewController.view.layer.shadowRadius = 2.5f;
-    self.frontViewController.view.layer.shadowOffset = CGSizeMake(0.0f, 2.5f);
+    self.frontView.layer.shadowColor =[UIColor blackColor].CGColor;
+    self.frontView.layer.shadowOpacity = 1.0f;
+    self.frontView.layer.shadowRadius = 2.5f;
+    self.frontView.layer.shadowOffset = CGSizeMake(0.0f, 2.5f);
     // 当shouldRasterize设成YES时，layer被渲染成一个bitmap，并缓存起来，等下次使用时不会再重新去渲染了，直接从渲染引擎的cache里读取那张bitmap，节约系统资源。
-    self.frontViewController.view.layer.shouldRasterize = YES;
+    self.frontView.layer.shouldRasterize = YES;
     
-    [self.view addSubview:self.frontViewController.view];
+    NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
+    UIViewController *viewController = viewControllers[0];
+    [self.frontView addSubview:viewController.view];
+    
+//    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:0];
+//    self.tableView.indexPathForSelectedRow = indexPath;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+
+//    [self.view addSubview:self.frontView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -142,18 +169,18 @@ static const float footerHeight = 150;
     panGesture.delegate = self;
     panGesture.minimumNumberOfTouches = 1;
     panGesture.maximumNumberOfTouches = 1;
-    [self.frontViewController.view addGestureRecognizer:panGesture];
+    [self.frontView addGestureRecognizer:panGesture];
     self.panGesture = panGesture;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     tapGesture.delegate = self;
-    [self.frontViewController.view addGestureRecognizer:tapGesture];
+    [self.frontView addGestureRecognizer:tapGesture];
     self.tapGesture = tapGesture;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer {
     // 获得手指移动的偏移量
-    CGPoint translatedPoint = [recognizer translationInView:self.frontViewController.view];
+    CGPoint translatedPoint = [recognizer translationInView:self.frontView];
     
     // 获得偏移后的视图的左边位置，直接用self.view也行
     CGFloat viewCenterX = recognizer.view.centerX + translatedPoint.x;
@@ -272,12 +299,17 @@ static const float footerHeight = 150;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    [self.frontView removeAllSubviews];
     NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
-    self.frontViewController = viewControllers[indexPath.row];
+    UIViewController *viewController = viewControllers[indexPath.row];
+    viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.frontView addSubview:viewController.view];
     
-//    [self addChildViewController:self.frontViewController];
-    
-    NSLog(@"self.frontViewController = %@", self.frontViewController);
+//
+////    [self addChildViewController:self.frontViewController];
+//    
+//    NSLog(@"self.frontViewController = %@", self.frontViewController);
     
 //    [self presentViewController:self.frontViewController animated:NO completion:^{
 //        
