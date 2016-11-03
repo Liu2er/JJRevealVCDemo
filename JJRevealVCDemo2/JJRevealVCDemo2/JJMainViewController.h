@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  JJMainViewController.h
 //  JJRevealVCDemo2
 //
 //  Created by 刘佳杰 on 16/11/3.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface JJMainViewController : UIViewController
 
 @end
-

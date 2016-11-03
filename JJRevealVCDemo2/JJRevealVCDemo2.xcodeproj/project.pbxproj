@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		58D9EA901DCADB2D00BCA35B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EA8F1DCADB2D00BCA35B /* main.m */; };
 		58D9EA931DCADB2D00BCA35B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EA921DCADB2D00BCA35B /* AppDelegate.m */; };
-		58D9EA961DCADB2D00BCA35B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EA951DCADB2D00BCA35B /* ViewController.m */; };
 		58D9EA991DCADB2D00BCA35B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D9EA971DCADB2D00BCA35B /* Main.storyboard */; };
 		58D9EA9B1DCADB2D00BCA35B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D9EA9A1DCADB2D00BCA35B /* Assets.xcassets */; };
 		58D9EA9E1DCADB2D00BCA35B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D9EA9C1DCADB2D00BCA35B /* LaunchScreen.storyboard */; };
 		58D9EAA91DCADB2D00BCA35B /* JJRevealVCDemo2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAA81DCADB2D00BCA35B /* JJRevealVCDemo2Tests.m */; };
 		58D9EAB41DCADB2D00BCA35B /* JJRevealVCDemo2UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAB31DCADB2D00BCA35B /* JJRevealVCDemo2UITests.m */; };
+		58D9EAC31DCADD3900BCA35B /* JJRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAC21DCADD3900BCA35B /* JJRevealViewController.m */; };
+		58D9EAC91DCADD9800BCA35B /* JJMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAC81DCADD9800BCA35B /* JJMainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +40,6 @@
 		58D9EA8F1DCADB2D00BCA35B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58D9EA911DCADB2D00BCA35B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		58D9EA921DCADB2D00BCA35B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		58D9EA941DCADB2D00BCA35B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		58D9EA951DCADB2D00BCA35B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		58D9EA981DCADB2D00BCA35B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		58D9EA9A1DCADB2D00BCA35B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58D9EA9D1DCADB2D00BCA35B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +50,10 @@
 		58D9EAAF1DCADB2D00BCA35B /* JJRevealVCDemo2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JJRevealVCDemo2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D9EAB31DCADB2D00BCA35B /* JJRevealVCDemo2UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJRevealVCDemo2UITests.m; sourceTree = "<group>"; };
 		58D9EAB51DCADB2D00BCA35B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58D9EAC11DCADD3900BCA35B /* JJRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJRevealViewController.h; sourceTree = "<group>"; };
+		58D9EAC21DCADD3900BCA35B /* JJRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRevealViewController.m; sourceTree = "<group>"; };
+		58D9EAC71DCADD9800BCA35B /* JJMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainViewController.h; sourceTree = "<group>"; };
+		58D9EAC81DCADD9800BCA35B /* JJMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +106,10 @@
 			children = (
 				58D9EA911DCADB2D00BCA35B /* AppDelegate.h */,
 				58D9EA921DCADB2D00BCA35B /* AppDelegate.m */,
-				58D9EA941DCADB2D00BCA35B /* ViewController.h */,
-				58D9EA951DCADB2D00BCA35B /* ViewController.m */,
-				58D9EA971DCADB2D00BCA35B /* Main.storyboard */,
-				58D9EA9A1DCADB2D00BCA35B /* Assets.xcassets */,
-				58D9EA9C1DCADB2D00BCA35B /* LaunchScreen.storyboard */,
-				58D9EA9F1DCADB2D00BCA35B /* Info.plist */,
+				58D9EAC11DCADD3900BCA35B /* JJRevealViewController.h */,
+				58D9EAC21DCADD3900BCA35B /* JJRevealViewController.m */,
+				58D9EAC71DCADD9800BCA35B /* JJMainViewController.h */,
+				58D9EAC81DCADD9800BCA35B /* JJMainViewController.m */,
 				58D9EA8E1DCADB2D00BCA35B /* Supporting Files */,
 			);
 			path = JJRevealVCDemo2;
@@ -117,6 +118,10 @@
 		58D9EA8E1DCADB2D00BCA35B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				58D9EA971DCADB2D00BCA35B /* Main.storyboard */,
+				58D9EA9A1DCADB2D00BCA35B /* Assets.xcassets */,
+				58D9EA9C1DCADB2D00BCA35B /* LaunchScreen.storyboard */,
+				58D9EA9F1DCADB2D00BCA35B /* Info.plist */,
 				58D9EA8F1DCADB2D00BCA35B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -276,8 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58D9EA961DCADB2D00BCA35B /* ViewController.m in Sources */,
 				58D9EA931DCADB2D00BCA35B /* AppDelegate.m in Sources */,
+				58D9EAC91DCADD9800BCA35B /* JJMainViewController.m in Sources */,
+				58D9EAC31DCADD3900BCA35B /* JJRevealViewController.m in Sources */,
 				58D9EA901DCADB2D00BCA35B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
