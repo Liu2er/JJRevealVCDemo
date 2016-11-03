@@ -271,18 +271,67 @@ static const float footerHeight = 150;
     return  cell;
 }
 
-- (NSMutableArray *)getAllKeysInDataSource:(NSMutableDictionary *)dataSource {
-    NSMutableArray *keys = @[].mutableCopy;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
+    self.frontViewController = viewControllers[indexPath.row];
+    
+//    [self addChildViewController:self.frontViewController];
+    
+    NSLog(@"self.frontViewController = %@", self.frontViewController);
+    
+//    [self presentViewController:self.frontViewController animated:NO completion:^{
+//        
+//        self.frontViewController.view.frame = CGRectMake(100, 100, 100, 100);
+//
+//    }];
+
+}
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+////    [self.frontViewController.view removeAllSubviews];
+//    NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
+//    self.frontViewController = viewControllers[indexPath.row];
+////    [self.frontViewController.view addSubview:viewControllers[indexPath.row].view];
+//    NSLog(@"self.frontViewController = %@", self.frontViewController);
+//    
+//    [self reloadInputViews];
+//}
+
+//- (NSMutableArray *)getAllKeysInDataSource:(NSMutableDictionary *)dataSource {
+//    NSMutableArray *keys = @[].mutableCopy;
+//    // ???
+//    if (!dataSource) {
+//        return keys;
+//    }
+//    
+//    for (NSString *key in self.dataSource) {
+//        [keys addObject:key];
+//    }
+//    
+//    return keys;
+//}
+
+- (NSArray<NSString *> *)getAllKeysInDataSource:(NSMutableDictionary *)dataSource {
+    NSArray *keys = [NSArray array];
     // ???
     if (!dataSource) {
-        return keys;
+        return nil;
     }
-    
-    for (NSString *key in self.dataSource) {
-        [keys addObject:key];
-    }
+
+    keys = [self.dataSource allKeys];
     
     return keys;
+}
 
+- (NSArray<UIViewController *> *)getAllValuesInDataSource:(NSMutableDictionary *)dataSource {
+    NSArray *viewControllers = [NSArray array];
+    // ???
+    if (!dataSource) {
+        return nil;
+    }
+    
+    viewControllers = [self.dataSource allValues];
+    
+    return viewControllers;
 }
 @end
