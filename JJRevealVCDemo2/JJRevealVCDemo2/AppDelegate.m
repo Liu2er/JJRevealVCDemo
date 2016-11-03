@@ -23,7 +23,7 @@
     JJMainViewController *mainVC = [[JJMainViewController alloc] init];
     
     JJRevealViewController *revealVC = [[JJRevealViewController alloc] initWithFrontViewController:mainVC];
-    revealVC.tableViewWidth = 300;
+    revealVC.tableViewWidth = 250;
     
     self.window.rootViewController = revealVC;
     

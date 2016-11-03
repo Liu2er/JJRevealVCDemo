@@ -12,9 +12,6 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-#define FROM_LEFT_CENTER_X (self.tableViewWidth / 4.0)
-#define TO_LEFT_CENTER_X (self.tableViewWidth / 2.0)
-
 static const float tableViewHeight = 176;
 
 @interface JJRevealViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
@@ -31,6 +28,7 @@ static const float tableViewHeight = 176;
 @property (assign, nonatomic) BOOL isRevealViewOpen;
 
 @end
+
 
 @implementation JJRevealViewController
 
@@ -54,7 +52,8 @@ static const float tableViewHeight = 176;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - tableViewHeight)/2.0, self.tableViewWidth, tableViewHeight) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.alpha = 0.5;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
     self.frontViewController.view.layer.shadowColor =[UIColor blackColor].CGColor;
@@ -191,9 +190,15 @@ static const float tableViewHeight = 176;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:20];
     }
+    
     cell.textLabel.text = [NSString stringWithFormat:@"第%ld个Controller", (long)indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    
     return  cell;
 }
 @end
