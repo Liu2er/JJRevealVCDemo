@@ -24,7 +24,6 @@
 // YES代表原来大小，NO代表向右缩小了
 @property (assign, nonatomic) BOOL isRevealViewOpen;
 
-
 @end
 
 @implementation JJRevealViewController
@@ -46,7 +45,6 @@
     self.view.layer.shadowOpacity = 1;
     self.view.layer.shadowRadius =10;
     self.view.layer.shouldRasterize = YES;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -87,6 +85,8 @@
         // 利用两点式方程求即：x = (y-y1)/(y2-y1)*(x2-x1)+x1，其中(x1,y1)=(1,fromCenterX)，(x2,y2)=(self.transformScale,toCenterX)，y=viewCenterX,待求的x=scale
         CGFloat scale = (viewCenterX - fromCenterX) / (toCenterX - fromCenterX) * (self.transformScale - 1) + 1;
         recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
+//        self.leftVC.tableView.layer.anchorPoint = CGPointMake(0.5, 0);
+        self.leftVC.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
     }
     
     // 当超过指定的中间边界后，view自动贴到边上去
@@ -180,6 +180,4 @@
 //    // 视图该移动到指定位置后，一次结束就清零一次
 //    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
 //}
-
-
 @end

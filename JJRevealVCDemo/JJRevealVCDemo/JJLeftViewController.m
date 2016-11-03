@@ -15,7 +15,7 @@ static const float tableViewHeight = 176;
 
 @interface JJLeftViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) UITableView *tableView;
+
 
 @end
 
@@ -26,6 +26,8 @@ static const float tableViewHeight = 176;
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageview.image = [UIImage imageNamed:@"leftbackiamge"];
     [self.view addSubview:imageview];
+    
+//    self.tableView.layer.anchorPoint = CGPointMake(0, 0.5);
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (VIEW_HEIGHT - tableViewHeight)/2.0, self.tableViewWidth, tableViewHeight) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;

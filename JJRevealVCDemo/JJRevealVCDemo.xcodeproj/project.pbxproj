@@ -440,7 +440,7 @@
 				DEVELOPMENT_TEAM = DJYQ9E2R5Z;
 				INFOPLIST_FILE = JJRevealVCDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dianping.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = self.edu.JJRevealVC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -452,7 +452,7 @@
 				DEVELOPMENT_TEAM = DJYQ9E2R5Z;
 				INFOPLIST_FILE = JJRevealVCDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dianping.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = self.edu.JJRevealVC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -10,6 +10,7 @@
 
 @interface JJLeftViewController : UIViewController
 
+@property (strong, nonatomic) UITableView *tableView;
 @property (assign, nonatomic) CGFloat tableViewWidth;
 
 @end
