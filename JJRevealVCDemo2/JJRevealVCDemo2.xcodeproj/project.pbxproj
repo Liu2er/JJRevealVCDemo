@@ -16,6 +16,7 @@
 		58D9EAB41DCADB2D00BCA35B /* JJRevealVCDemo2UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAB31DCADB2D00BCA35B /* JJRevealVCDemo2UITests.m */; };
 		58D9EAC31DCADD3900BCA35B /* JJRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAC21DCADD3900BCA35B /* JJRevealViewController.m */; };
 		58D9EAC91DCADD9800BCA35B /* JJMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EAC81DCADD9800BCA35B /* JJMainViewController.m */; };
+		58D9EACC1DCAE0E400BCA35B /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D9EACB1DCAE0E400BCA35B /* UIView+Layout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		58D9EAC21DCADD3900BCA35B /* JJRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJRevealViewController.m; sourceTree = "<group>"; };
 		58D9EAC71DCADD9800BCA35B /* JJMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainViewController.h; sourceTree = "<group>"; };
 		58D9EAC81DCADD9800BCA35B /* JJMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainViewController.m; sourceTree = "<group>"; };
+		58D9EACA1DCAE0E400BCA35B /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		58D9EACB1DCAE0E400BCA35B /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				58D9EAC21DCADD3900BCA35B /* JJRevealViewController.m */,
 				58D9EAC71DCADD9800BCA35B /* JJMainViewController.h */,
 				58D9EAC81DCADD9800BCA35B /* JJMainViewController.m */,
+				58D9EACA1DCAE0E400BCA35B /* UIView+Layout.h */,
+				58D9EACB1DCAE0E400BCA35B /* UIView+Layout.m */,
 				58D9EA8E1DCADB2D00BCA35B /* Supporting Files */,
 			);
 			path = JJRevealVCDemo2;
@@ -284,6 +289,7 @@
 				58D9EA931DCADB2D00BCA35B /* AppDelegate.m in Sources */,
 				58D9EAC91DCADD9800BCA35B /* JJMainViewController.m in Sources */,
 				58D9EAC31DCADD3900BCA35B /* JJRevealViewController.m in Sources */,
+				58D9EACC1DCAE0E400BCA35B /* UIView+Layout.m in Sources */,
 				58D9EA901DCADB2D00BCA35B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,4 +10,10 @@
 
 @interface JJRevealViewController : UIViewController
 
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (nonatomic) CGFloat tableViewWidth;
+
+- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController;
+
 @end
