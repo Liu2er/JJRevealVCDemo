@@ -14,6 +14,11 @@
 
 @property (nonatomic) CGFloat tableViewWidth;
 
-- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController;
+- (void)addFrontViewController:(UIViewController *)frontViewController withTitle:(NSString *)title;
+
++ (instancetype)sharedRevealViewController;
+
+
+//- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController; UNAVAILABLE_ATTRIBUTE;
 
 @end

@@ -12,7 +12,9 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-static const float tableViewHeight = 176;
+
+static const float headerHeight = 150;
+static const float footerHeight = 150;
 
 @interface JJRevealViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
@@ -27,32 +29,99 @@ static const float tableViewHeight = 176;
 // YES代表原来大小，NO代表向右缩小了
 @property (assign, nonatomic) BOOL isRevealViewOpen;
 
+@property (strong, nonatomic) NSMutableArray <NSString *> *titles;
+@property (strong, nonatomic) NSMutableArray <UIViewController *> *viewControllers;
+
+@property (strong, nonatomic) NSMutableDictionary *dataSource;
+
 @end
 
 
 @implementation JJRevealViewController
 
-- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController {
-    if (self = [super init]) {
-        _frontViewController = frontViewController;
-        _frontViewTransformScale = 0.8;
-        _tableViewTransformScale = 0.8;
-        _isRevealViewOpen = YES;
-    }
-    return self;
+
++ (instancetype)sharedRevealViewController {
+    static JJRevealViewController *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [JJRevealViewController new];
+    });
+    return instance;
 }
+
+//- (NSMutableArray<NSString *> *)titles {
+//    if (!_titles) {
+//        _titles = [NSMutableArray new];
+//    }
+//    return _titles;
+//}
+//
+//- (NSMutableArray<UIViewController *> *)viewControllers {
+//    if (!_viewControllers) {
+//        _viewControllers = [NSMutableArray new];
+//    }
+//    return _viewControllers;
+//}
+
+- (NSMutableDictionary *)dataSource {
+    if (!_dataSource) {
+        _dataSource = [NSMutableDictionary new];
+    }
+    return _dataSource;
+}
+
+- (void)addFrontViewController:(UIViewController *)frontViewController withTitle:(NSString *)title {
+    
+    // 把第一次添加的frontViewController设为默认的self.frontViewController
+    if (!self.frontViewController) {
+        self.frontViewController = frontViewController;
+    }
+    
+    NSLog(@"frontViewController = %@", frontViewController);
+    
+//    if (![self.viewControllers containsObject:frontViewController]) {
+//        [self.viewControllers addObject:frontViewController];
+//        [self.titles addObject:title];
+//    }
+    
+    if (![self.dataSource.allValues containsObject:frontViewController]) {
+        [self.dataSource setObject:frontViewController forKey:title];
+    }
+    
+    NSLog(@"self.viewControllers = %@, titles = %@, self.dataSource = %@", self.viewControllers, self.titles, self.dataSource);
+}
+
+//- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController {
+//    if (self = [super init]) {
+//        _frontViewController = frontViewController;
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    NSMutableArray *keys = @[].mutableCopy;
+//    for (NSString *key in self.dataSource) {
+//        [keys addObject:key];
+//    }
+//    
+//    NSLog(@"values = %@", keys);
+//    self.frontViewController = self.dataSource[keys[0]];
+    
+    self.frontViewTransformScale = 0.8;
+    self.tableViewTransformScale = 0.8;
+    self.isRevealViewOpen = YES;
     
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:self.view.bounds];
     imageview.image = [UIImage imageNamed:@"leftbackiamge"];
     [self.view addSubview:imageview];
     
+    CGFloat tableViewHeight = 44 * self.dataSource.count + headerHeight + footerHeight;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - tableViewHeight)/2.0, self.tableViewWidth, tableViewHeight) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor redColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
@@ -170,11 +239,11 @@ static const float tableViewHeight = 176;
 #pragma  maek - UITableViewDelegate UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.01;
+    return headerHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01;
+    return footerHeight;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -182,7 +251,7 @@ static const float tableViewHeight = 176;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -196,9 +265,24 @@ static const float tableViewHeight = 176;
         cell.textLabel.font = [UIFont systemFontOfSize:20];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"第%ld个Controller", (long)indexPath.row];
-    
+    NSArray *keys = [self getAllKeysInDataSource:self.dataSource];
+    cell.textLabel.text = keys[indexPath.row];
     
     return  cell;
+}
+
+- (NSMutableArray *)getAllKeysInDataSource:(NSMutableDictionary *)dataSource {
+    NSMutableArray *keys = @[].mutableCopy;
+    // ???
+    if (!dataSource) {
+        return keys;
+    }
+    
+    for (NSString *key in self.dataSource) {
+        [keys addObject:key];
+    }
+    
+    return keys;
+
 }
 @end

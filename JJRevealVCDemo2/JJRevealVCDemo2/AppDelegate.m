@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "JJRevealViewController.h"
 #import "JJMainViewController.h"
+#import "JJOtherViewController.h"
+#import "JJOther2ViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,10 +22,31 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     
-    JJMainViewController *mainVC = [[JJMainViewController alloc] init];
-    
-    JJRevealViewController *revealVC = [[JJRevealViewController alloc] initWithFrontViewController:mainVC];
+    JJRevealViewController *revealVC = [JJRevealViewController sharedRevealViewController];
     revealVC.tableViewWidth = 250;
+    
+    [revealVC addFrontViewController:[JJMainViewController new] withTitle:@"Main控制器"];
+    
+    [revealVC addFrontViewController:[JJOtherViewController new] withTitle:@"Other控制器"];
+    
+    [revealVC addFrontViewController:[JJOther2ViewController new] withTitle:@"Other2控制器"];
+    
+//    JJMainViewController *mainVC = [JJMainViewController new];
+//    [revealVC addFrontViewController:mainVC withTitle:@"Main控制器"];
+//    
+//    JJOtherViewController *otherVC = [JJOtherViewController new];
+//    [revealVC addFrontViewController:otherVC withTitle:@"Other控制器"];
+//    
+//    JJOther2ViewController *otherVC2 = [JJOther2ViewController new];
+//    [revealVC addFrontViewController:otherVC2 withTitle:@"Other2控制器"];
+    
+    
+//    JJRevealViewController *revealVC = [JJRevealViewController sharedRevealViewController];
+//    [revealVC addFrontViewController:mainVC withTitle:@"Main控制器"];
+//    revealVC.tableViewWidth = 250;
+    
+//    JJRevealViewController *revealVC = [[JJRevealViewController alloc] initWithFrontViewController:mainVC];
+//    revealVC.tableViewWidth = 250;
     
     self.window.rootViewController = revealVC;
     
