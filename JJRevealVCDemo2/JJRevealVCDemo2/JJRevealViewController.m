@@ -12,7 +12,6 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
-
 static const float headerHeight = 150;
 static const float footerHeight = 150;
 
@@ -29,18 +28,12 @@ static const float footerHeight = 150;
 // YES代表原来大小，NO代表向右缩小了
 @property (assign, nonatomic) BOOL isRevealViewOpen;
 
-@property (strong, nonatomic) NSMutableArray <NSString *> *titles;
-@property (strong, nonatomic) NSMutableArray <UIViewController *> *viewControllers;
-
 @property (strong, nonatomic) NSMutableDictionary *dataSource;
-
-@property (assign, nonatomic) BOOL isFirstFrontView;
 
 @end
 
 
 @implementation JJRevealViewController
-
 
 + (instancetype)sharedRevealViewController {
     static JJRevealViewController *instance;
@@ -51,20 +44,6 @@ static const float footerHeight = 150;
     return instance;
 }
 
-//- (NSMutableArray<NSString *> *)titles {
-//    if (!_titles) {
-//        _titles = [NSMutableArray new];
-//    }
-//    return _titles;
-//}
-//
-//- (NSMutableArray<UIViewController *> *)viewControllers {
-//    if (!_viewControllers) {
-//        _viewControllers = [NSMutableArray new];
-//    }
-//    return _viewControllers;
-//}
-
 - (NSMutableDictionary *)dataSource {
     if (!_dataSource) {
         _dataSource = [NSMutableDictionary new];
@@ -72,95 +51,68 @@ static const float footerHeight = 150;
     return _dataSource;
 }
 
-- (UIView *)frontView {
-    if (!_frontView) {
-        _frontView = [[UIView alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:_frontView];
-    }
-    return _frontView;
-}
-
 - (void)addFrontViewController:(UIViewController *)frontViewController withTitle:(NSString *)title {
-    
-    // 把第一次添加的frontViewController设为默认的self.frontViewController
-//    if (self.isFirstFrontView) {
-//        [self.frontView addSubview:frontViewController.view];
-//        self.isFirstFrontView = NO;
-//    }
-    
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        [self.frontView addSubview:frontViewController.view];
-//    });
-    
-    NSLog(@"frontViewController = %@", frontViewController);
-    
-//    if (![self.viewControllers containsObject:frontViewController]) {
-//        [self.viewControllers addObject:frontViewController];
-//        [self.titles addObject:title];
-//    }
-    
     if (![self.dataSource.allValues containsObject:frontViewController]) {
         [self.dataSource setObject:frontViewController forKey:title];
     }
-    
-    NSLog(@"self.viewControllers = %@, titles = %@, self.dataSource = %@", self.viewControllers, self.titles, self.dataSource);
 }
-
-//- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController {
-//    if (self = [super init]) {
-//        _frontViewController = frontViewController;
-//    }
-//    return self;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSMutableArray *keys = @[].mutableCopy;
-//    for (NSString *key in self.dataSource) {
-//        [keys addObject:key];
-//    }
-//    
-//    NSLog(@"values = %@", keys);
-//    self.frontViewController = self.dataSource[keys[0]];
-    
+    [self initDefaultData];
+    [self setBackgroudImage];
+    [self initTableView];
+    [self initFrontView];
+    [self showFirstView];
+}
+
+- (void)initDefaultData {
     self.frontViewTransformScale = 0.8;
     self.tableViewTransformScale = 0.8;
     self.isRevealViewOpen = YES;
-    self.isFirstFrontView = YES;
-    
+}
+
+- (void)setBackgroudImage {
     UIImageView *imageview = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    imageview.image = [UIImage imageNamed:@"leftbackiamge"];
+    imageview.image = [UIImage imageNamed:@"backgroundImage2"];
     [self.view addSubview:imageview];
-    
+}
+
+- (void)initTableView {
     CGFloat tableViewHeight = 44 * self.dataSource.count + headerHeight + footerHeight;
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - tableViewHeight)/2.0, self.tableViewWidth, tableViewHeight) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor redColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    // tableView默认选中第一行
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     [self.view addSubview:self.tableView];
-    
+}
+
+// 默认显示第一个控制器的view
+- (void)showFirstView {
+    NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
+    UIViewController *viewController = viewControllers[0];
+    viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.frontView addSubview:viewController.view];
+}
+
+- (void)initFrontView {
+    self.frontView = [[UIView alloc] initWithFrame:self.view.bounds];
     self.frontView.layer.shadowColor =[UIColor blackColor].CGColor;
     self.frontView.layer.shadowOpacity = 1.0f;
     self.frontView.layer.shadowRadius = 2.5f;
     self.frontView.layer.shadowOffset = CGSizeMake(0.0f, 2.5f);
     // 当shouldRasterize设成YES时，layer被渲染成一个bitmap，并缓存起来，等下次使用时不会再重新去渲染了，直接从渲染引擎的cache里读取那张bitmap，节约系统资源。
     self.frontView.layer.shouldRasterize = YES;
-    
-    NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
-    UIViewController *viewController = viewControllers[0];
-    [self.frontView addSubview:viewController.view];
-    
-//    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:0];
-//    self.tableView.indexPathForSelectedRow = indexPath;
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
-
-//    [self.view addSubview:self.frontView];
+    //    self.frontView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [self.view addSubview:self.frontView];
 }
+
+#pragma mark - Animation
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -299,49 +251,13 @@ static const float footerHeight = 150;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     [self.frontView removeAllSubviews];
     NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
     UIViewController *viewController = viewControllers[indexPath.row];
     viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.frontView addSubview:viewController.view];
-    
-//
-////    [self addChildViewController:self.frontViewController];
-//    
-//    NSLog(@"self.frontViewController = %@", self.frontViewController);
-    
-//    [self presentViewController:self.frontViewController animated:NO completion:^{
-//        
-//        self.frontViewController.view.frame = CGRectMake(100, 100, 100, 100);
-//
-//    }];
-
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-////    [self.frontViewController.view removeAllSubviews];
-//    NSArray *viewControllers = [self getAllValuesInDataSource:self.dataSource];
-//    self.frontViewController = viewControllers[indexPath.row];
-////    [self.frontViewController.view addSubview:viewControllers[indexPath.row].view];
-//    NSLog(@"self.frontViewController = %@", self.frontViewController);
-//    
-//    [self reloadInputViews];
-//}
-
-//- (NSMutableArray *)getAllKeysInDataSource:(NSMutableDictionary *)dataSource {
-//    NSMutableArray *keys = @[].mutableCopy;
-//    // ???
-//    if (!dataSource) {
-//        return keys;
-//    }
-//    
-//    for (NSString *key in self.dataSource) {
-//        [keys addObject:key];
-//    }
-//    
-//    return keys;
-//}
 
 - (NSArray<NSString *> *)getAllKeysInDataSource:(NSMutableDictionary *)dataSource {
     NSArray *keys = [NSArray array];
@@ -349,9 +265,7 @@ static const float footerHeight = 150;
     if (!dataSource) {
         return nil;
     }
-
     keys = [self.dataSource allKeys];
-    
     return keys;
 }
 
@@ -361,9 +275,7 @@ static const float footerHeight = 150;
     if (!dataSource) {
         return nil;
     }
-    
     viewControllers = [self.dataSource allValues];
-    
     return viewControllers;
 }
 @end

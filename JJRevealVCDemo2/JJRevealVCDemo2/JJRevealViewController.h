@@ -11,14 +11,9 @@
 @interface JJRevealViewController : UIViewController
 
 @property (strong, nonatomic) UITableView *tableView;
-
 @property (nonatomic) CGFloat tableViewWidth;
 
-- (void)addFrontViewController:(UIViewController *)frontViewController withTitle:(NSString *)title;
-
 + (instancetype)sharedRevealViewController;
-
-
-//- (instancetype)initWithFrontViewController:(UIViewController *)frontViewController; UNAVAILABLE_ATTRIBUTE;
+- (void)addFrontViewController:(UIViewController *)frontViewController withTitle:(NSString *)title;
 
 @end
