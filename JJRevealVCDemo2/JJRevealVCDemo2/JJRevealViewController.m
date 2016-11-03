@@ -57,8 +57,14 @@ static const float tableViewHeight = 176;
     self.tableView.alpha = 0.5;
     [self.view addSubview:self.tableView];
     
-    [self.view addSubview:self.frontViewController.view];
+    self.frontViewController.view.layer.shadowColor =[UIColor blackColor].CGColor;
+    self.frontViewController.view.layer.shadowOpacity = 1.0f;
+    self.frontViewController.view.layer.shadowRadius = 2.5f;
+    self.frontViewController.view.layer.shadowOffset = CGSizeMake(0.0f, 2.5f);
+    // 当shouldRasterize设成YES时，layer被渲染成一个bitmap，并缓存起来，等下次使用时不会再重新去渲染了，直接从渲染引擎的cache里读取那张bitmap，节约系统资源。
+    self.frontViewController.view.layer.shouldRasterize = YES;
     
+    [self.view addSubview:self.frontViewController.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -100,36 +106,28 @@ static const float tableViewHeight = 176;
         CGFloat scale = (viewCenterX - fromCenterX) / (toCenterX - fromCenterX) * (self.frontViewTransformScale - 1) + 1;
         recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
         
-//        self.tableView.left = 0;
-//        self.tableView.layer.anchorPoint = CGPointMake(0.5, 0.5);
-        
-//        CGFloat tableViewCenterX = (scale - 1) / (self.frontViewTransformScale - 1) * (self.tableViewWidth / 2.0 - self.tableViewWidth / 4.0) + self.tableViewWidth / 4.0;
-//        self.tableView.center = CGPointMake(tableViewCenterX, SCREEN_HEIGHT / 2.0);        
-        
-        CGFloat scale2 = 3 - 2.5 * scale;
+        CGFloat scale2 = (scale - 1) / (self.frontViewTransformScale - 1) * (1 - self.tableViewTransformScale) + self.tableViewTransformScale;
         self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale2, scale2);
         self.tableView.right = recognizer.view.left;
     }
     
     // 当超过指定的中间边界后，view自动贴到边上去
     if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
-        if (viewCenterX > middleCenterX) {  // view的左边向右超过了中间线就自动贴到右边
+        if (viewCenterX > middleCenterX) {  // 贴到右边
             [UIView animateWithDuration:0.1 animations:^{
                 // 此处也有下面的问题，但可以忽略
                 recognizer.view.centerX = toCenterX;
                 recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.frontViewTransformScale, self.frontViewTransformScale);
-//                self.tableView.center = CGPointMake(TO_LEFT_CENTER_X, SCREEN_HEIGHT / 2.0);
                 self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
                 self.tableView.right = recognizer.view.left;
             } completion:^(BOOL finished) {
                 self.isRevealViewOpen = NO;
             }];
         } else {
-            [UIView animateWithDuration:0.1 animations:^{  // view的左边向左超过了中间线就自动贴到左边
+            [UIView animateWithDuration:0.1 animations:^{  // 贴到左边
                 // 由于锚点为view的中心点，而满足进到此代码段的条件时recognizer.view还没有回到屏幕大小，此时以中心为锚点按比例放大会导致整个view左偏
                 recognizer.view.centerX = fromCenterX;
                 recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-//                self.tableView.center = CGPointMake(FROM_LEFT_CENTER_X, SCREEN_HEIGHT / 2.0);
                 self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.tableViewTransformScale, self.tableViewTransformScale);
                 self.tableView.right = recognizer.view.left;
             } completion:^(BOOL finished) {
@@ -149,8 +147,6 @@ static const float tableViewHeight = 176;
             // 用recognizer.view.left = 0;的方式会因为锚点原因导致往左偏
             recognizer.view.centerX = SCREEN_WIDTH / 2.0;
             recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
-//            self.tableView.center = CGPointMake(FROM_LEFT_CENTER_X, SCREEN_HEIGHT / 2.0);
-            
             self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.tableViewTransformScale, self.tableViewTransformScale);
             self.tableView.right = recognizer.view.left;
         } completion:^(BOOL finished) {
@@ -164,8 +160,6 @@ static const float tableViewHeight = 176;
             // 用recognizer.view.left = 0;的方式会因为锚点原因导致往左偏
             recognizer.view.centerX = self.tableViewWidth + SCREEN_WIDTH * self.frontViewTransformScale / 2.0;
             recognizer.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.frontViewTransformScale, self.frontViewTransformScale);
-//            self.tableView.center = CGPointMake(TO_LEFT_CENTER_X, SCREEN_HEIGHT / 2.0);
-            
             self.tableView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             self.tableView.right = recognizer.view.left;
         } completion:^(BOOL finished) {
